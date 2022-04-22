@@ -19,6 +19,8 @@ code {
 
 :root {
   --background-color: rgb(18, 24, 40);
+  --lightest-bg-color: rgba(55, 65, 81, 0.596);
+  --light-bg-color: rgba(55, 65, 81);
   --text-color: rgba(255, 255, 255, 0.829);
   --input-background: rgba(31, 41, 55);
   --dark-text-color: rgba(17, 24, 39);
@@ -513,6 +515,10 @@ button {
   margin: 0 auto;
 }
 
+.mar-lr-2 {
+  margin: 0 2rem;
+}
+
 /* ########################################## Gap ######################################## */
 
 .gap-0-1 {
@@ -583,6 +589,10 @@ button {
 
 .fnt-2 {
   font-size: 2rem;
+}
+
+.fnt-2-5 {
+  font-size: 2.5rem;
 }
 
 .fnt-3 {
@@ -661,4 +671,15 @@ button {
   color: var(--text-color);
   margin-bottom: 1rem;
   border-radius: 10px;
+}
+
+.main-body {
+  display: grid;
+  grid-template-columns: 18rem 1fr;
+  column-gap: 3rem;
+}
+
+.side-body {
+  margin-top: 2rem;
+  border-top: 1px solid var(--text-color);
 }

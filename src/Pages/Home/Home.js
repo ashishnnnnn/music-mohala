@@ -2,6 +2,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../Context/AuthContext";
+import { SideBar } from "../../Components";
 
 export const Home = () => {
   let navigate = useNavigate();
@@ -13,10 +14,11 @@ export const Home = () => {
     }
   }, []);
   return (
-    <div>
-      <h1 className="mar-t-1" style={{ width: "400px" }}>
-        Home Page Yet to Build
-      </h1>
+    <div className="main-body pad-1">
+      <SideBar />
+      <div className="side-body pad-1">
+        <div className=""></div>
+      </div>
     </div>
   );
 };
