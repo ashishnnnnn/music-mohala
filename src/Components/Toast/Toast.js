@@ -11,7 +11,9 @@ export const Toast = ({ message, type, handleclosetoast }) => {
   });
   return (
     <div className={`alert ${type}`}>
-      <p className=" flex-center-row pad-0-5 alert-text">{message}</p>
+      <p className=" flex justify-center items-center	 p-3 alert-text">
+        {message}
+      </p>
       <div onClick={handleclosetoast} className="alert-cross fnt-2">
         &times;
       </div>
