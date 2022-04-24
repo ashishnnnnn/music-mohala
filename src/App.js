@@ -3,7 +3,7 @@ import { WebSiteRoutes } from "./WebSiteRoute/WebSiteRoute";
 
 function App() {
   return (
-    <div className="App">
+    <div className="App bg-slate-900 text-slate-50 ">
       <WebSiteRoutes />
     </div>
   );

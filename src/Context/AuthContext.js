@@ -10,6 +10,7 @@ const localtoken = localStorage.getItem("token");
 const initial_auth_state = {
   user: {
     name: "",
+    username: "",
     email: "",
     password: "",
     confirmPassword: "",
