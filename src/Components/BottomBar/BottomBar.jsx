@@ -31,7 +31,7 @@ const sideOption = [
 export const BottomBar = () => {
   const location = useLocation().pathname;
   return (
-    <div className="border-2 md:hidden flex bg-slate-900		 p-4 gap-3  w-10/11	 rounded-3xl h-24	fixed	bottom-1 right-3 left-3 justify-around	">
+    <div className="border-2 md:hidden flex bg-slate-900 p-4 gap-3 w-10/11 rounded-3xl h-24	fixed	bottom-1 right-3 left-3 justify-around	">
       {sideOption.map((ele) => (
         <div
           key={ele.name}
@@ -42,7 +42,7 @@ export const BottomBar = () => {
           <i className={`${ele.icon_class}`}></i>
         </div>
       ))}
-      <div className="cursor-pointer flex p-4 text-2xl gap-4	items-center rounded-3xl	hover:bg-slate-700/60">
+      <div className="cursor-pointer flex p-4 text-2xl gap-4 items-center rounded-3xl	hover:bg-slate-700/60">
         <i className="fas fa-sign-out-alt"></i>
       </div>
     </div>

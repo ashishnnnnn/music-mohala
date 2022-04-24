@@ -13,6 +13,7 @@ export const Home = () => {
   const [posts, setPosts] = useState([]);
   const [currPostValue, setCurrPostValue] = useState("");
   const { handleaddtoast } = useToast();
+  const reverseThePost = [...posts].reverse();
   console.log(posts);
   useEffect(() => {
     if (!token) {
@@ -23,7 +24,7 @@ export const Home = () => {
   return (
     <div className="pl-4 pr-1 md:pr-0 md:pl-3	 flex gap-5 ">
       <SideBar />
-      <div className="w-screen  md:w-[calc(100vw-20rem)]  border-t mt-2 md:pb-3 pb-28 overflow-y-auto	h-[calc(100vh-2rem)]">
+      <div className="w-screen  md:w-[calc(100vw-20rem)]  border-t mt-2 mr-2 md:pb-3 pb-28 overflow-y-auto	h-[calc(100vh-2rem)]">
         <div className="w-full border-2 mt-4 h-44 border-gray-500	rounded-3xl p-3 relative">
           <textarea
             value={currPostValue}
@@ -44,7 +45,7 @@ export const Home = () => {
             Post
           </button>
         </div>
-        {posts.map((post) => (
+        {reverseThePost.map((post) => (
           <PostView key={post._id} post={post} />
         ))}
       </div>

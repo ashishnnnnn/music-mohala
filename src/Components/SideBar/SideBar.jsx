@@ -31,7 +31,7 @@ const sideOption = [
 export const SideBar = () => {
   const location = useLocation().pathname;
   return (
-    <div className="mt-3 hidden md:flex flex-col	bg-slate-700/60	 p-6 gap-3  w-80	h-[calc(100vh-3rem)] rounded-3xl">
+    <div className="mt-6 hidden md:flex flex-col	bg-slate-700/60	 p-6 gap-3  w-80	h-[calc(100vh-3rem)] rounded-3xl">
       <div className="flex flex-col	justify-center	items-center">
         <span className="text-4xl	font-extrabold	">Music</span>
         <span className="text-xl	font-semibold	">Mohala</span>
