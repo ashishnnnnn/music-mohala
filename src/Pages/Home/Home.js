@@ -21,9 +21,9 @@ export const Home = () => {
     getAllPost(setPosts);
   }, []);
   return (
-    <div className="pt-1 pl-6 pr-6 flex gap-3 ">
+    <div className="pl-4 pr-1 md:pr-0 md:pl-3	 flex gap-5 ">
       <SideBar />
-      <div className="w-screen  md:w-[calc(100vw-20rem)] pt-4 pl-6 border-t mt-2 mb-3 overflow-y-auto	h-[calc(100vh-2rem)] no-scrollbar">
+      <div className="w-screen  md:w-[calc(100vw-20rem)]  border-t mt-2 md:pb-3 pb-28 overflow-y-auto	h-[calc(100vh-2rem)]">
         <div className="w-full border-2 mt-4 h-44 border-gray-500	rounded-3xl p-3 relative">
           <textarea
             value={currPostValue}
