@@ -12,7 +12,6 @@ export const addNewPost = async (post, setPosts, handleaddtoast) => {
         authorization: loginToken,
       },
     });
-    console.log(response.data.posts);
     setPosts(response.data.posts);
     handleaddtoast({
       message: "Post Added Successfully",
