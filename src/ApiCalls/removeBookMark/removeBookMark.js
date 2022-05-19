@@ -14,7 +14,6 @@ export const removeBookMark = async (
         authorization: loginToken,
       },
     });
-    console.log(response.data);
     setBookMarkList(response.data.bookmarks);
     handleaddtoast({
       message: "Removed from BookMark",

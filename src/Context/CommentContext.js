@@ -1,19 +1,15 @@
-import { createContext, useContext, useReducer } from "react";
-import { CommentsReducer } from "../Reducer/CommentsReducer";
+import { createContext, useContext, useReducer, useState } from "react";
 
 const CommentContext = createContext(null);
 
 const useComments = () => useContext(CommentContext);
 
-const initialComments = {};
+const initialComments = [];
 
 const CommentProvider = ({ children }) => {
-  const [commentsData, setCommentData] = useReducer(
-    CommentsReducer,
-    initialComments
-  );
+  const [commentArray, setCommentArray] = useState(initialComments);
   return (
-    <CommentContext.Provider value={{ commentsData, setCommentData }}>
+    <CommentContext.Provider value={[commentArray, setCommentArray]}>
       {children}
     </CommentContext.Provider>
   );

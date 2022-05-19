@@ -10,7 +10,6 @@ export const unLikePost = async (post_id) => {
         authorization: loginToken,
       },
     });
-    console.log(response.data);
     return response.data.posts;
   } catch (e) {
     console.log(e);

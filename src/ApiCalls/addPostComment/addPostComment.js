@@ -1,21 +1,26 @@
 import axios from "axios";
 
-export const addBookMark = async (post_id, setBookMarkList, handleaddtoast) => {
+export const addPostComment = async ({
+  post_id,
+  handleaddtoast,
+  commentData,
+  setCommentArray,
+}) => {
   const loginToken = localStorage.getItem("token");
   try {
     const response = await axios({
       method: "POST",
-      url: `/api/users/bookmark/${post_id}`,
+      url: `/api/comments/add/${post_id}`,
+      data: { commentData: commentData },
       headers: {
         authorization: loginToken,
       },
     });
-
-    setBookMarkList(response.data.bookmarks);
     handleaddtoast({
-      message: "Added To BookMark",
+      message: "Comment Added Successfully",
       type: "alert-success",
     });
+    return response.data.comments;
   } catch (e) {
     console.log(e);
   }

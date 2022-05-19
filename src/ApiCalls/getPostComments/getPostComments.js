@@ -6,7 +6,6 @@ export const getPostComments = async ({ post_id }) => {
       method: "GET",
       url: `/api/comments/${post_id}/`,
     });
-    console.log(response);
   } catch (e) {
     console.log(e.message);
   }

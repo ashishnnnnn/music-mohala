@@ -78,6 +78,7 @@ export const createPostHandler = function (schema, request) {
       );
     }
     const { postData } = JSON.parse(request.requestBody);
+
     const post = {
       _id: uuid(),
       content: postData,
@@ -86,10 +87,12 @@ export const createPostHandler = function (schema, request) {
         likedBy: [],
         dislikedBy: [],
       },
+      comments: [],
       name: user.name,
       username: user.username,
       createdAt: formatDate(),
       updatedAt: formatDate(),
+      profileImg: user.profileImg,
     };
     this.db.posts.insert(post);
     return new Response(201, {}, { posts: this.db.posts });
