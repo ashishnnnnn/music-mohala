@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from "react";
 
-import { Toast } from "../Components";
+import { Toast } from "../Components/Toast/Toast";
 
 import { v4 as uuid } from "uuid";
 

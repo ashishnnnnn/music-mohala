@@ -77,9 +77,8 @@ export const createPostHandler = function (schema, request) {
         }
       );
     }
-    console.log(request);
     const { postData } = JSON.parse(request.requestBody);
-    console.log(postData);
+
     const post = {
       _id: uuid(),
       content: postData,
@@ -88,10 +87,12 @@ export const createPostHandler = function (schema, request) {
         likedBy: [],
         dislikedBy: [],
       },
+      comments: [],
       name: user.name,
       username: user.username,
       createdAt: formatDate(),
       updatedAt: formatDate(),
+      profileImg: user.profileImg,
     };
     this.db.posts.insert(post);
     return new Response(201, {}, { posts: this.db.posts });
@@ -183,7 +184,44 @@ export const likePostHandler = function (schema, request) {
       (currUser) => currUser._id !== user._id
     );
     post.likes.likeCount += 1;
-    post.likes.likedBy.push(user);
+    // post.likes.likedBy.push(user);
+    post.likes.likedBy.push({ ...user, bookmarks: "" });
+    this.db.posts.update({ _id: postId }, { ...post, updatedAt: formatDate() });
+    return new Response(201, {}, { posts: this.db.posts });
+  } catch (error) {
+    return new Response(
+      500,
+      {},
+      {
+        error,
+      }
+    );
+  }
+};
+
+/**
+ * This handler handles liking a post in the db.
+ * send POST Request at /api/posts/like/:postId
+ * */
+
+export const unlikePostHandler = function (schema, request) {
+  const user = requiresAuth.call(this, request);
+  try {
+    if (!user) {
+      return new Response(
+        404,
+        {},
+        {
+          errors: [
+            "The username you entered is not Registered. Not Found error",
+          ],
+        }
+      );
+    }
+    const postId = request.params.postId;
+    const post = schema.posts.findBy({ _id: postId }).attrs;
+    post.likes.likedBy = [];
+    post.likes.likeCount -= 1;
     this.db.posts.update({ _id: postId }, { ...post, updatedAt: formatDate() });
     return new Response(201, {}, { posts: this.db.posts });
   } catch (error) {

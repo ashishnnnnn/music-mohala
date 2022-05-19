@@ -4,6 +4,7 @@ import { users } from "./backend/db/users";
 import {
   loginHandler,
   signupHandler,
+  getAuthUserHandler,
 } from "./backend/controllers/AuthController";
 import {
   createPostHandler,
@@ -14,6 +15,7 @@ import {
   likePostHandler,
   dislikePostHandler,
   getAllUserPostsHandler,
+  unlikePostHandler,
 } from "./backend/controllers/PostController";
 import {
   followUserHandler,
@@ -25,6 +27,16 @@ import {
   unfollowUserHandler,
   editUserHandler,
 } from "./backend/controllers/UserController";
+
+import {
+  getPostCommentsHandler,
+  getPostCommentById,
+  addPostCommentHandler,
+  editPostCommentHandler,
+  deletePostCommentHandler,
+  likePostCommentHandler,
+  dislikePostCommentHandler,
+} from "./backend/controllers/CommentsController";
 
 export function makeServer({ environment = "development" } = {}) {
   return new Server({
@@ -55,6 +67,7 @@ export function makeServer({ environment = "development" } = {}) {
     routes() {
       this.namespace = "api";
       // auth routes (public)
+      this.get("/auth/user", getAuthUserHandler.bind(this));
       this.post("/auth/signup", signupHandler.bind(this));
       this.post("/auth/login", loginHandler.bind(this));
 
@@ -68,11 +81,35 @@ export function makeServer({ environment = "development" } = {}) {
       this.delete("/posts/:postId", deletePostHandler.bind(this));
       this.post("/posts/edit/:postId", editPostHandler.bind(this));
       this.post("/posts/like/:postId", likePostHandler.bind(this));
+      this.post("/posts/unlike/:postId", unlikePostHandler.bind(this));
       this.post("/posts/dislike/:postId", dislikePostHandler.bind(this));
 
       // user routes (public)
       this.get("/users", getAllUsersHandler.bind(this));
       this.get("/users/:userId", getUserHandler.bind(this));
+
+      //post comments routes (public)
+      this.get("/comments/:postId", getPostCommentsHandler.bind(this));
+      this.get("/comments/:postId/:commentId", getPostCommentById.bind(this));
+
+      //post comments routes (private)
+      this.post("/comments/add/:postId", addPostCommentHandler.bind(this));
+      this.post(
+        "/comments/edit/:postId/:commentId",
+        editPostCommentHandler.bind(this)
+      );
+      this.post(
+        "/comments/delete/:postId/:commentId",
+        deletePostCommentHandler.bind(this)
+      );
+      this.post(
+        "/comments/upvote/:postId/:commentId",
+        likePostCommentHandler.bind(this)
+      );
+      this.post(
+        "/comments/downvote/:postId/:commentId",
+        dislikePostCommentHandler.bind(this)
+      );
 
       // user routes (private)
       this.post("users/edit", editUserHandler.bind(this));

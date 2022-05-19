@@ -10,7 +10,7 @@ export const Toast = ({ message, type, handleclosetoast }) => {
     };
   });
   return (
-    <div className={`alert ${type}`}>
+    <div className={`alert ${type} rounded-2xl`}>
       <p className=" flex justify-center items-center	 p-3 alert-text">
         {message}
       </p>

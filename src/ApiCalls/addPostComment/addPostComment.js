@@ -1,21 +1,26 @@
 import axios from "axios";
 
-export const addNewPost = async (post, setPosts, handleaddtoast) => {
+export const addPostComment = async ({
+  post_id,
+  handleaddtoast,
+  commentData,
+  setCommentArray,
+}) => {
   const loginToken = localStorage.getItem("token");
   try {
     const response = await axios({
       method: "POST",
-      url: "/api/posts",
-      data: { postData: post },
+      url: `/api/comments/add/${post_id}`,
+      data: { commentData: commentData },
       headers: {
         authorization: loginToken,
       },
     });
-    setPosts(response.data.posts);
     handleaddtoast({
-      message: "Post Added Successfully",
+      message: "Comment Added Successfully",
       type: "alert-success",
     });
+    return response.data.comments;
   } catch (e) {
     console.log(e);
   }
